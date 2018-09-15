@@ -30,7 +30,7 @@
 
   "content_scripts": [
     {
-      "matches": ["https://developer.chrome.com/*"],
+      "matches": ["https://www.instagram.com/p/*"],
       "js": ["content-script.js"],
       "css": ["content-style.css"]
     }
