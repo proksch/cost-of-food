@@ -1,4 +1,4 @@
-ingredients = {
+var ingredientsDb = {
     "almond milk": { "title": "almond milk", "co2": 1.09, "mj": 1.09, "l": 1.09 },
     "almonds": { "title": "almonds", "co2": 2.18, "mj": 26.31, "l": 1.90 },
     "beef": { "title": "beef", "co2": 27.76, "mj": 164.22, "l": 0.47 },
@@ -74,27 +74,25 @@ recepies = {
 };
 
 
-
-
-
-function getValue(meal)
+function getFoodprint(thisMeal)
 {
-    thisMeal = recepies[meal];
+    console.log(thisMeal)
+
     var total_h2o = 0;
     var total_co2 = 0;
     var total_mj = 0;
-    var div = document.getElementById('text');
-    Ï
-    for (var prop in thisMeal) {
-            Ïlowerprop = prop.toLowerCase();
-            if (typeof ingredients[lowerprop] != "undefined") {
-           // div.innerHTML += prop + " = " + thisMeal[prop] + "<br />";
-            total_h2o += ingredients[lowerprop]["l"] * (thisMeal[lowerprop]  / 1000);
-            total_co2 += ingredients[lowerprop]["co2"] * (thisMeal[lowerprop]  / 1000);
-            total_mj += ingredients[lowerprop]["mj"] * (thisMeal[lowerprop]  / 1000);
+    
+    for (var idx in thisMeal) {
+            var prop = thisMeal[idx]
+            var name = prop['name'].toLowerCase();
+            if (typeof ingredientsDb[name] == "undefined") {
+                continue
             }
-
-
+           // div.innerHTML += prop + " = " + thisMeal[prop] + "<br />";
+           var amount = prop['value']  / 1000.0
+            total_h2o += ingredientsDb[name]["l"] * amount;
+            total_co2 += ingredientsDb[name]["co2"] * amount;
+            total_mj += ingredientsDb[name]["mj"] * amount;
       }
 
      /* div.innerHTML += "H2O : " + total_h2o + "<br />"
@@ -106,7 +104,4 @@ function getValue(meal)
             "co2" : total_co2,
             "mj" : total_mj,
         }
-
 }
-
-getValue("pizza salami");

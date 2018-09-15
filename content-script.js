@@ -125,11 +125,23 @@ function removeIngredient(idx) {
 function changeName(idx, name) {
   console.log(idx + " (name) -> " + name);
   ingredients[idx]["name"] = name;
+  generateComment()
 }
 
 function changeValue(idx, value) {
   console.log(idx + " (value) -> " + value);
   ingredients[idx]["value"] = value;
+  generateComment()
+}
+
+function generateComment() {
+    console.log("xxx")
+    var cost = getFoodprint(ingredients)
+
+    
+    var comment = document.getElementById("cof-comment")
+    comment.innerHTML = "Water: "+cost["h2o"]+", CO2: "+cost["co2"]+", Energy: "+cost["mj"]+""
+    console.log(cost)
 }
 
 function renderListIngredients() {
@@ -154,10 +166,12 @@ function renderListIngredients() {
   eli.appendChild(miBtn);
 
   x.appendChild(eli);
+
+  generateComment()
 }
 
 modal.innerHTML += "<p>Generated Comment</p>";
-modal.innerHTML += '<textarea id="comment"></textarea>';
+modal.innerHTML += '<textarea id="cof-comment"></textarea>';
 
 modal.innerHTML += '<div id="cof-cnt"><a id="cof-post">Comment</a></div>';
 
