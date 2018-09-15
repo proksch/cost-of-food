@@ -29,6 +29,11 @@
     margin: 0 0 5px 0;
 }
 
+#cof-container li {
+    list-style: none;
+    clear: left;
+}
+
 
 #cof-container .header {
   font-weight: bold;
