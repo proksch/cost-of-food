@@ -10,7 +10,7 @@ var section = document.getElementsByClassName("ltpMr Slqrh")[0];
 section.appendChild(btn);
 
 var article = document.getElementsByTagName("article")[0];
-var image = article.querySelectorAll("img")[1].srcset;
+var image = article.querySelectorAll("img")[1].src;
 console.log(article);
 console.log(image);
 
@@ -30,7 +30,6 @@ xhttp.onreadystatechange = function() {
   }
 };*/
 
-/*
 var data = null;
 
 var xhr = new XMLHttpRequest();
@@ -42,12 +41,11 @@ xhr.addEventListener("readystatechange", function () {
  }
 });
 
-xhr.open("GET", "https://gk2009ch.gotdns.ch:1880/hackzurich/v2/?url=https%3A%2F%2Fmedia-cdn.tripadvisor.com%2Fmedia%2Fphoto-s%2F10%2F90%2F53%2Fe8%2Fpizza-salami.jpg");
+xhr.open("GET", "https://gk2009ch.gotdns.ch:1880/hackzurich/v2/?url=" + image);
 xhr.setRequestHeader("cache-control", "no-cache");
 xhr.setRequestHeader("postman-token", "430a9ff3-d21a-2335-9ad1-9bdf01b5761d");
 
 xhr.send(data);
-*/
 
 
 

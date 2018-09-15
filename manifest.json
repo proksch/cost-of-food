@@ -4,7 +4,12 @@
   "description": "Increase the awareness of your buddies that the food they post food that is not good for the environment such as avocados, beef, etc.",
   "manifest_version": 2,
 
-  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "storage",
+    "https://gk2009ch.gotdns.ch:1880/"
+  ],
 
   "background": {
     "scripts": ["background.js"],
@@ -31,10 +36,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.instagram.com/p/*"],
-      "js": [
-        "calculation.js",
-        "content-script.js"
-      ],
+      "js": ["calculation.js", "content-script.js"],
       "css": ["content-style.css"]
     }
   ]
