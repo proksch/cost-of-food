@@ -2,3 +2,24 @@
     margin: 10px 0 10px 10px;
 }
 
+#cof-background {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+}
+
+
+#cof-container {
+    width:50%;
+    min-width: 200px;
+    margin: 250px 25%;
+    background-color: white;
+    padding: 20px;
+    border: 2px black solid;
+    border-radius: 10px;
+}
