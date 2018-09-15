@@ -14,6 +14,10 @@ section.appendChild(btn);
 
 var article = document.getElementsByTagName("article")[0];
 var image = article.querySelectorAll("img")[1].src;
+
+var currentIngredients;
+var nameOfFood;
+
 console.log(article);
 console.log(image);
 
@@ -39,14 +43,17 @@ var xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
 
 xhr.addEventListener("readystatechange", function () {
- if (this.readyState === 4) {
-   console.log(this.responseText);
- }
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+    ingredients = JSON.parse(this.responseText)["ingredients"];
+    nameOfFood = JSON.parse(this.responseText)["name"];
+    renderListIngredients();
+  }
+
 });
 
 xhr.open("GET", "https://gk2009ch.gotdns.ch:1880/hackzurich/v2/?url=" + image);
 xhr.setRequestHeader("cache-control", "no-cache");
-xhr.setRequestHeader("postman-token", "430a9ff3-d21a-2335-9ad1-9bdf01b5761d");
 
 xhr.send(data);
 
@@ -85,21 +92,21 @@ function createLi(idx, elem) {
   var input1 = document.createElement("input");
   input1.className = "ingredient";
   input1.value = elem["name"];
-  input1.onkeyup = function(e) {
+  input1.onkeyup = function (e) {
     changeName(idx, input1.value);
   };
 
   var input2 = document.createElement("input");
   input2.className = "amount";
   input2.value = elem["value"];
-  input2.onkeyup = function(e) {
+  input2.onkeyup = function (e) {
     changeValue(idx, input2.value);
   };
 
   var a = document.createElement("a");
   a.className = "btn-del";
   a.innerText = "🗑";
-  a.onclick = function() {
+  a.onclick = function () {
     removeIngredient(idx);
   };
 
@@ -136,13 +143,49 @@ function changeValue(idx, value) {
 }
 
 function generateComment() {
-    console.log("xxx")
-    var cost = getFoodprint(ingredients)
+  console.log("xxx")
+  var cost = getFoodprint(ingredients)
+
+
+  var comment = document.getElementById("cof-comment")
+  comment.innerHTML = "Water: " + cost["h2o"] + ", CO2: " + cost["co2"] + ", Energy: " + cost["mj"] + ""
+  console.log(cost)
+}
+
+function submitPost() {
+  var data = null;
+  var text = "";
+  var caption = "";
+
+  bg.style.visibility = "hidden";
+
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function () {
+    
+      console.log(this.responseText);
 
     
-    var comment = document.getElementById("cof-comment")
-    comment.innerHTML = "Water: "+cost["h2o"]+", CO2: "+cost["co2"]+", Energy: "+cost["mj"]+""
-    console.log(cost)
+  });
+
+
+  var cost = getFoodprint(ingredients)
+
+
+      
+      var caption = "Water: " + Math.round(cost["h2o"] * 100) / 100   + "l , CO2: " 
+          + Math.round(cost["co2"] * 100) / 100 + "kg, Energy: " 
+          + Math.round(cost["mj"] * 100) / 100 + "MJ";
+      
+      var text = " Your CO2 footprint: " + Math.round(cost["co2"] * 100) / 100 + "kg";
+
+
+  xhr.open("GET", "https://gk2009ch.gotdns.ch:5000/postImage?imageUrl=" + image + "&text="+text+"&caption="+caption);
+  xhr.setRequestHeader("cache-control", "no-cache");
+
+  xhr.send(data);
+
 }
 
 function renderListIngredients() {
@@ -174,9 +217,17 @@ function renderListIngredients() {
 modal.innerHTML += "<p>Generated Comment</p>";
 modal.innerHTML += '<textarea id="cof-comment"></textarea>';
 
-modal.innerHTML += '<div id="cof-cnt"><a id="cof-post">Comment</a></div>';
+var miSubmitBtn = document.createElement("a");
+miSubmitBtn.className = "btn-submit";
+miSubmitBtn.id = "cof-post"
+miSubmitBtn.innerText = "Comment";
+miSubmitBtn.onclick = submitPost;
 
-modal.onclick = function(e) {
+modal.appendChild(miSubmitBtn)
+//modal.innerHTML += '<div id="cof-cnt"></div>';
+
+
+modal.onclick = function (e) {
   var event = e || window.event;
   event.stopPropagation();
 };
@@ -187,11 +238,13 @@ bg.id = "cof-background";
 bg.appendChild(modal);
 document.body.appendChild(bg);
 
-btn.onclick = function() {
+btn.onclick = function () {
   bg.style.visibility = "visible";
 };
-bg.onclick = function() {
+bg.onclick = function () {
   bg.style.visibility = "hidden";
 };
 
-renderListIngredients();
+bg.style.visibility = "hidden";
+
+// renderListIngredients();
