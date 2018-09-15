@@ -1,25 +1,64 @@
 #cof-button {
-    margin: 10px 0 10px 10px;
+  margin: 10px 0 10px 10px;
 }
 
 #cof-background {
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    visibility: hidden;
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  -visibility: hidden;
+}
+
+#cof-container {
+  width: 50%;
+  min-width: 300px;
+  margin: 250px 25%;
+  background-color: white;
+  padding: 20px;
+  border: 2px black solid;
+  border-radius: 10px;
+}
+
+#cof-container h2 {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0 0 5px 0;
 }
 
 
-#cof-container {
-    width:50%;
-    min-width: 200px;
-    margin: 250px 25%;
-    background-color: white;
-    padding: 20px;
-    border: 2px black solid;
+#cof-container .header {
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+
+
+
+#cof-container .btn {
+    background-color: lightgrey;
+    border: 1px solid darkgray;
     border-radius: 10px;
+    padding: 0 5px;
+    margin: 3px;
+    cursor: pointer;
+}
+
+#cof-container .ingredient {
+  width: 60%;
+}
+
+#cof-container .amount {
+  width: 30%;
+}
+
+#cof-container textarea {
+  height: 100px;
+  width: 100% fixed;
 }

@@ -1,0 +1,24 @@
+#### api/ingredient-service ####
+
+input: imgurl
+output: [
+	{ name: "...", "amout": 123 }
+]
+
+
+
+
+#### api/post-service ####
+
+input: {
+	receipt: "Pizza Salami",
+	imgurl: "http://instagram.com",
+	ingredients: [
+		{ name: "...", "amout": 123 }
+	],
+	cost: {
+		"water": 5,
+		"co2": 1.6
+		"energy"
+	}
+}
