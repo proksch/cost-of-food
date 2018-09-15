@@ -24,16 +24,15 @@
 }
 
 #cof-container h2 {
-    font-weight: bold;
-    font-size: 16px;
-    margin: 0 0 5px 0;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 0 5px 0;
 }
 
 #cof-container li {
-    list-style: none;
-    clear: left;
+  list-style: none;
+  clear: left;
 }
-
 
 #cof-container .header {
   font-weight: bold;
@@ -44,16 +43,20 @@
   float: left;
 }
 
+#cof-container .btn-del {
+  margin: 3px;
+  cursor: pointer;
+}
 
-
-#cof-container .btn {
+#cof-container .btn-add {
     background-color: lightgrey;
     border: 1px solid darkgray;
-    border-radius: 10px;
+    border-radius: 6px;
     padding: 0 5px;
     margin: 3px;
     cursor: pointer;
-}
+  }
+
 
 #cof-container .ingredient {
   width: 60%;
@@ -66,4 +69,23 @@
 #cof-container textarea {
   height: 100px;
   width: 100% fixed;
+}
+
+#cof-ingredients {
+    margin: 10px 0;
+}
+
+#cof-ingredients li {
+    margin: 2px 0;
+}
+
+#cof-post {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 80%;
+  width: 20%;
+  padding: 3px;
+  border-radius: 6px;
+  background-image: linear-gradient(lightgreen, darkgreen);
+  color: white;
 }

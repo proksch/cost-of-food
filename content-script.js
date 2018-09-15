@@ -9,16 +9,69 @@ btn.href = "#";
 var section = document.getElementsByClassName("ltpMr Slqrh")[0];
 section.appendChild(btn);
 
+var article = document.getElementsByTagName("article")[0];
+var image = article.querySelectorAll("img")[1].srcset;
+console.log(article);
+console.log(image);
+
+// http://gk2009ch.gotdns.ch:1880/hackzurich/v2/?url=https://www.instagram.com/p/BnvfKLiFqy-/?utm_source=ig_web_copy_link
+/*var xhttp = new XMLHttpRequest();
+xhttp.open(
+  "GET",
+  "https://gk2009ch.gotdns.ch:1880/hackzurich/v2/?url=" + image,
+  false
+); // 3rd = asyc?
+var res = xhttp.send();
+console.log(res);
+
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    console.log(this.responseText);
+  }
+};*/
+
+/*
+var data = null;
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+ if (this.readyState === 4) {
+   console.log(this.responseText);
+ }
+});
+
+xhr.open("GET", "https://gk2009ch.gotdns.ch:1880/hackzurich/v2/?url=https%3A%2F%2Fmedia-cdn.tripadvisor.com%2Fmedia%2Fphoto-s%2F10%2F90%2F53%2Fe8%2Fpizza-salami.jpg");
+xhr.setRequestHeader("cache-control", "no-cache");
+xhr.setRequestHeader("postman-token", "430a9ff3-d21a-2335-9ad1-9bdf01b5761d");
+
+xhr.send(data);
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 // modal
 
 modal = document.createElement("div");
 modal.id = "cof-container";
 
 var ingredients = [
-  { name: "abc", value: 123 },
+  { name: "Beef", value: 123 },
   { name: "bcd", value: 50 },
   { name: "dce", value: 23.4 }
 ];
+
+console.log("Commenting on URL: " + document.URL);
 
 modal.innerHTML += "<h2>Thanks for raising awareness about food costs!</h2>";
 modal.innerHTML +=
@@ -43,8 +96,8 @@ function createLi(idx, elem) {
   };
 
   var a = document.createElement("a");
-  a.className = "btn";
-  a.innerText = "-";
+  a.className = "btn-del";
+  a.innerText = "🗑";
   a.onclick = function() {
     removeIngredient(idx);
   };
@@ -70,13 +123,13 @@ function removeIngredient(idx) {
 }
 
 function changeName(idx, name) {
-    console.log(idx + " (name) -> " + name);
-    ingredients[idx]['name'] = name
+  console.log(idx + " (name) -> " + name);
+  ingredients[idx]["name"] = name;
 }
 
 function changeValue(idx, value) {
   console.log(idx + " (value) -> " + value);
-  ingredients[idx]['value'] = value
+  ingredients[idx]["value"] = value;
 }
 
 function renderListIngredients() {
@@ -93,8 +146,8 @@ function renderListIngredients() {
   }
 
   var miBtn = document.createElement("a");
-  miBtn.className = "btn";
-  miBtn.innerText = "+";
+  miBtn.className = "btn-add";
+  miBtn.innerText = "➕";
   miBtn.onclick = addIngredient;
 
   var eli = document.createElement("li");
@@ -106,7 +159,7 @@ function renderListIngredients() {
 modal.innerHTML += "<p>Generated Comment</p>";
 modal.innerHTML += '<textarea id="comment"></textarea>';
 
-modal.innerHTML += '<div id="cof-cnt"><a id="cof-sed">post</a></div>';
+modal.innerHTML += '<div id="cof-cnt"><a id="cof-post">Comment</a></div>';
 
 modal.onclick = function(e) {
   var event = e || window.event;

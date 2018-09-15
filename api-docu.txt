@@ -1,7 +1,16 @@
 #### api/ingredient-service ####
 
 input: imgurl
-output: [
+output: 
+
+{
+	"name": "Pizza Salami",
+	"ingredients": [
+		{ "name": "Beef", "amout": 300 }.
+		{ "name": "Wheat", "amount": 100 }
+	]
+}
+[
 	{ name: "...", "amout": 123 }
 ]
 
