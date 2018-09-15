@@ -1,5 +1,9 @@
 #cof-button {
-  margin: 10px 0 10px 10px;
+  margin: 4px 0 4px 4px;
+}
+#cof-button img {
+  width: 32px;
+  height: 32px;
 }
 
 #cof-background {
@@ -49,14 +53,13 @@
 }
 
 #cof-container .btn-add {
-    background-color: lightgrey;
-    border: 1px solid darkgray;
-    border-radius: 6px;
-    padding: 0 5px;
-    margin: 3px;
-    cursor: pointer;
-  }
-
+  background-color: lightgrey;
+  border: 1px solid darkgray;
+  border-radius: 6px;
+  padding: 0 5px;
+  margin: 3px;
+  cursor: pointer;
+}
 
 #cof-container .ingredient {
   width: 60%;
@@ -72,11 +75,11 @@
 }
 
 #cof-ingredients {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 #cof-ingredients li {
-    margin: 2px 0;
+  margin: 2px 0;
 }
 
 #cof-post {

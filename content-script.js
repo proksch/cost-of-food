@@ -1,8 +1,11 @@
 console.log("content script loaded!");
 
-// add image button
+// add image butto
+var leafImg = document.createElement("img")
+leafImg.src = chrome.extension.getURL("images/leaf2.png")
+
 var btn = document.createElement("a");
-btn.appendChild(document.createTextNode("$$$"));
+btn.appendChild(leafImg);
 btn.id = "cof-button";
 btn.href = "#";
 

@@ -39,5 +39,7 @@
       "js": ["calculation.js", "content-script.js"],
       "css": ["content-style.css"]
     }
-  ]
+  ],
+
+  "web_accessible_resources": ["images/leaf2.png"]
 }
