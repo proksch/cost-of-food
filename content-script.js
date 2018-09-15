@@ -15,79 +15,98 @@ modal = document.createElement("div");
 modal.id = "cof-container";
 
 var ingredients = [
-    {"name": "abc", "value": 123},
-    {"name": "bcd", "value": 50},
-    {"name": "dce", "value": 23.4}
-]
+  { name: "abc", value: 123 },
+  { name: "bcd", value: 50 },
+  { name: "dce", value: 23.4 }
+];
 
-modal.innerHTML += "<h2>Thanks for raising awareness about food costs!</h2>"
-modal.innerHTML += "<p>Please make a good guess of the ingredients that you see on the picture.</p>"
-modal.innerHTML += '<ul id="cof-ingredients" />'
+modal.innerHTML += "<h2>Thanks for raising awareness about food costs!</h2>";
+modal.innerHTML +=
+  "<p>Please make a good guess of the ingredients that you see on the picture.</p>";
+modal.innerHTML += '<ul id="cof-ingredients" />';
 
 function createLi(idx, elem) {
-    console.log(i)
+  console.log(i);
 
-    var input1 = document.createElement("input");
-    input1.className = "ingredient"
-    input1.value = elem['name']
+  var input1 = document.createElement("input");
+  input1.className = "ingredient";
+  input1.value = elem["name"];
+  input1.onkeyup = function(e) {
+    changeName(idx, input1.value);
+  };
 
-    var input2 = document.createElement("input");
-    input2.className = "amount"
-    input2.value = elem['value']
+  var input2 = document.createElement("input");
+  input2.className = "amount";
+  input2.value = elem["value"];
+  input2.onkeyup = function(e) {
+    changeValue(idx, input2.value);
+  };
 
-    var a = document.createElement("a");
-    a.className = "btn"
-    a.innerText = "-"
-    a.onclick = function() {
-        removeIngredient(idx);
-    }
+  var a = document.createElement("a");
+  a.className = "btn";
+  a.innerText = "-";
+  a.onclick = function() {
+    removeIngredient(idx);
+  };
 
-    var li = document.createElement("li");
-    li.className = "ingredient-li"
-    li.appendChild(input1)
-    li.appendChild(input2)
-    li.appendChild(a)
+  var li = document.createElement("li");
+  li.className = "ingredient-li";
+  li.appendChild(input1);
+  li.appendChild(input2);
+  li.appendChild(a);
 
-    return li;
+  return li;
 }
 
 function addIngredient() {
-    console.log("add")
+  console.log("add");
+  ingredients.push({ name: "", value: "" });
+  renderListIngredients();
 }
 function removeIngredient(idx) {
-    console.log("remove: "+ idx)
+  console.log("remove: " + idx);
+  ingredients.splice(idx, 1);
+  renderListIngredients();
+}
+
+function changeName(idx, name) {
+    console.log(idx + " (name) -> " + name);
+    ingredients[idx]['name'] = name
+}
+
+function changeValue(idx, value) {
+  console.log(idx + " (value) -> " + value);
+  ingredients[idx]['value'] = value
 }
 
 function renderListIngredients() {
+  var x = document.getElementById("cof-ingredients");
 
-    var x = document.getElementById("cof-ingredients")
+  x.innerHTML =
+    '<li><span class="header ingredient">Ingredient</span><span class="header amount">Amount (g)</span></li>';
 
-    x.innerHTML = '<li><span class="header ingredient">Ingredient</span><span class="header amount">Amount (g)</span></li>';
+  for (i in ingredients) {
+    var idx_out = i;
+    var elem_out = ingredients[idx_out];
 
-   for(i in ingredients) {
-        var idx_out = i;
-        var elem_out = ingredients[idx_out]
+    x.appendChild(createLi(idx_out, elem_out));
+  }
 
-        x.appendChild(createLi(idx_out, elem_out))
-    }
+  var miBtn = document.createElement("a");
+  miBtn.className = "btn";
+  miBtn.innerText = "+";
+  miBtn.onclick = addIngredient;
 
-    var miBtn = document.createElement("a");
-    miBtn.className = "btn"
-    miBtn.innerText = "+"
-    miBtn.onclick = addIngredient
+  var eli = document.createElement("li");
+  eli.appendChild(miBtn);
 
-    var eli = document.createElement("li");
-    eli.appendChild(miBtn)
-
-    x.appendChild(eli)
+  x.appendChild(eli);
 }
 
-modal.innerHTML +=
-  '<p>Generated Comment</p>';
-modal.innerHTML +=
-  '<textarea id="comment"></textarea>';
+modal.innerHTML += "<p>Generated Comment</p>";
+modal.innerHTML += '<textarea id="comment"></textarea>';
 
-modal.innerHTML += '<div id="cof-cnt"><a id="cof-sed">post</a></div>'
+modal.innerHTML += '<div id="cof-cnt"><a id="cof-sed">post</a></div>';
 
 modal.onclick = function(e) {
   var event = e || window.event;
@@ -106,8 +125,5 @@ btn.onclick = function() {
 bg.onclick = function() {
   bg.style.visibility = "hidden";
 };
-
-
-
 
 renderListIngredients();
