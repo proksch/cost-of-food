@@ -19,7 +19,7 @@
 
 #cof-container {
   width: 50%;
-  min-width: 300px;
+  min-width: 400px;
   margin: 250px 25%;
   background-color: white;
   padding: 20px;
@@ -31,6 +31,19 @@
   font-weight: bold;
   font-size: 16px;
   margin: 0 0 5px 0;
+}
+
+#cof-dishNameLabel {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+p.nameCnt {
+    margin-top: 10px;
+}
+
+#cof-dishName {
+    
 }
 
 #cof-container li {
@@ -47,6 +60,10 @@
   float: left;
 }
 
+#cof-ingredients {
+    clear: left;
+}
+
 #cof-container .btn-del {
   margin: 3px;
   cursor: pointer;
@@ -56,8 +73,8 @@
   background-color: lightgrey;
   border: 1px solid darkgray;
   border-radius: 6px;
-  padding: 0 5px;
-  margin: 3px;
+  padding: 0 2px 0 5px;
+  margin: 5px;
   cursor: pointer;
 }
 
@@ -66,7 +83,7 @@
 }
 
 #cof-container .amount {
-  width: 30%;
+  width: 28%;
 }
 
 #cof-container textarea {
@@ -85,8 +102,8 @@
 #cof-post {
   text-align: center;
   margin-top: 10px;
-  margin-left: 80%;
-  width: 20%;
+  margin-left: 70%;
+  width: 30%;
   padding: 3px;
   border-radius: 6px;
   background-image: linear-gradient(lightgreen, darkgreen);
