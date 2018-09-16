@@ -1,0 +1,1 @@
+Please note that this folder is supposed to contain two files "out_graph_medium.pb" and "out_graph_pizza.pb" that contain preprocessed innformation of the ML approach. We had to remove both files due to the file size limitation, but are happy to provide them on demand.
