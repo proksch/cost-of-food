@@ -156,7 +156,7 @@ function myRound(val) {
 
 function createComment() {
     var cost = getFoodprint(ingredients)
-    var h2o = myRound(cost["h2o"] * 1000) // in L!
+    var h2o = myRound(cost["h2o"] * 1000) // m^3 --> L!
     var co2 = myRound(cost["co2"])
     var mj = myRound(cost["mj"])
     var kwh = myRound(mj/3.6);
@@ -178,7 +178,7 @@ function createComment() {
 }
 
 function addComment() {
-    //submitPost()
+    submitPost()
     addIGComment()
     bg.style.visibility = "hidden";
 }
@@ -211,23 +211,22 @@ function submitPost() {
 function addIGComment() {
 
     var cmt = createComment()
-    var formData = new FormData();
-    formData.append("comment_text", cmt);
-    formData.append("replied_to_comment_id", "");
+    var url = document.URL.split("?")[0].split("#")[0];
 
-    var addUrl = "https://www.instagram.com/web/comments/"+postId+"/add/";
+    console.log("About to make a call:")
+    console.log("  Comment: " + cmt)
+    console.log("  URL:" + url)
 
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
+
     xhr.addEventListener("readystatechange", function () {
         console.log(this.responseText);
     });
-    xhr.open("POST", addUrl);
+    xhr.open("GET", "https://gk2009ch.gotdns.ch:5000/postComment?url=" + url + "&comment="+cmt);
     xhr.setRequestHeader("cache-control", "no-cache");
-    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded")
-    xhr.setRequestHeader("x-csrftoken", "yZp8CcFuLi4wBLyw9Ac1dpCn9aDciuki")
 
-    xhr.send(formData);
+    xhr.send();
 }
 
 function renderListIngredients() {
