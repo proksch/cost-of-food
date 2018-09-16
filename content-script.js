@@ -170,7 +170,7 @@ function createComment() {
 
     var res = "This "+nameOfFood+" looks delicious, doesn't it? "
     res += "Unfortunately, eating it frequently is quite bad for our planet. "
-    res += "Growing the ingredients to make it requires " + h2o + "l water, " + co2 + "kg CO2, " + kwh + "kWh energy. "
+    res += "Growing the ingredients to make it requires " + h2o + "l water, " + co2 + "kg CO2, and " + kwh + "kWh energy. "
     res += "This is equivalent to the amount of power to run your fridge for " + practicalPower + "weeks, ";
     res += "flushing your toilet " + practicalWater + "times, or the amount of CO2 that you exhale in " + practicalco2 + " months."
     
