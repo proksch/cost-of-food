@@ -28,7 +28,6 @@ xhr.addEventListener("readystatechange", function () {
     nameInput2 = document.getElementById("cof-dishName")
     nameInput2.value = nameOfFood
     nameInput2.onkeyup = function() {
-        console.log("dfsfsfdsfdfsdfsdfsdsfd")
         nameOfFood = nameInput2.value
         generateComment()
         console.log(nameOfFood)
@@ -56,13 +55,6 @@ function findPostId() {
 } 
 var postId = findPostId()
 console.log("post id:" + postId)
-
-function getCsrfToken() {
-    chrome.cookies.get("csrf_token", function(details) {
-        console.log(details)
-    })
-}
-getCsrfToken()
 
 // modal
 
@@ -155,17 +147,33 @@ function changeValue(idx, value) {
 
 function generateComment() {
     var comment = document.getElementById("cof-comment")
-    comment.innerHTML = createComment()
+    comment.value = createComment()
+}
+
+function myRound(val) {
+    return Math.round(val * 100) / 100
 }
 
 function createComment() {
     var cost = getFoodprint(ingredients)
-    var h2o = Math.round(cost["h2o"] * 100) / 100
-    var co2 = Math.round(cost["co2"] * 100) / 100
-    var mj = Math.round(cost["mj"] * 100) / 100
+    var h2o = myRound(cost["h2o"] * 1000) // in L!
+    var co2 = myRound(cost["co2"])
+    var mj = myRound(cost["mj"])
+    var kwh = myRound(mj/3.6);
+
+    // Kühlschrank im JAhr: ~100kWh/y ~2kWh/w
+    var practicalPower = myRound(kwh/2.0)
+    // badewanne ~150l, klospülung ~35l
+    var practicalWater = myRound(h2o/35.0)
+    // co2/km in a car: ~120kg/y = ~10kg/m
+    var practicalco2 = myRound(co2/10.0)
+
     var res = "This "+nameOfFood+" looks delicious, doesn't it? "
     res += "Unfortunately, eating it frequently is quite bad for our planet. "
-    res += "Growing the ingredients to make it requires " + h2o + "l water, " + co2 + "kg CO2, " + mj + "MJ energy."
+    res += "Growing the ingredients to make it requires " + h2o + "l water, " + co2 + "kg CO2, " + kwh + "kWh energy. "
+    res += "This is equivalent to the amount of power to run your fridge for " + practicalPower + "weeks, ";
+    res += "flushing your toilet " + practicalWater + "times, or the amount of CO2 that you exhale in " + practicalco2 + " months."
+    
     return res
 }
 
